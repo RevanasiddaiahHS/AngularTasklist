@@ -1,4 +1,4 @@
-import { Component, computed, input, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 @Component({
   selector: 'app-user',
   imports: [],
@@ -6,14 +6,16 @@ import { Component, computed, input, Input } from '@angular/core';
   styleUrl: './user.css',
 })
 export class User {
-  // @Input({ required: true }) avatar!: string;
-  // @Input({ required: true }) name!: string;
-  // get userImage() {
-  //   return 'assets/users/' + this.avatar;
-    
-  // }
-  avatar=input.required<string>();
-  name=input.required<string>();
+  @Input({ required: true }) avatar!: string;
+  @Input({ required: true }) name!: string;
+  @Input({ required: true }) id!: string;
 
-  userImage=computed(()=> 'assets/users/'+this.avatar() )
+  @Output() selectUser = new EventEmitter();
+  
+  get userImage() {
+    return 'assets/users/' + this.avatar;
+  }
+  selecedtUser() {
+    this.selectUser.emit(this.id);
+  }
 }
