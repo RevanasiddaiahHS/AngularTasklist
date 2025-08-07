@@ -1,4 +1,15 @@
 import { Component, EventEmitter, Input, output, Output } from '@angular/core';
+
+// type Usert={
+//  id: string;
+//     avatar: string;
+//     name: string;
+// }
+interface Usert{
+  id: string;
+    avatar: string;
+    name: string;
+}
 @Component({
   selector: 'app-user',
   imports: [],
@@ -6,17 +17,16 @@ import { Component, EventEmitter, Input, output, Output } from '@angular/core';
   styleUrl: './user.css',
 })
 export class User {
-  @Input({ required: true }) avatar!: string;
-  @Input({ required: true }) name!: string;
-  @Input({ required: true }) id!: string;
+  @Input({ required: true }) user!: Usert;
 
   //@Output() selectUser = new EventEmitter();
 
   selectUser = output<string>();
+
   get userImage() {
-    return 'assets/users/' + this.avatar;
+    return 'assets/users/' + this.user.avatar;
   }
   selecedtUser() {
-    this.selectUser.emit(this.id);
+    this.selectUser.emit(this.user.id);
   }
 }
