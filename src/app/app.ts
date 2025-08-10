@@ -19,4 +19,5 @@ export class App {
   onSelectUser(id: string) {
     this.selectedUserId = id;
   }
+  // Task management app completed with stand alone components
 }
